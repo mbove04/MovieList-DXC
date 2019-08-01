@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Foundation
+import AFNetworking
 
 class MainViewController: UIViewController {
 
@@ -15,18 +17,12 @@ class MainViewController: UIViewController {
     
     var searchController: UISearchController!
     
-    var originalArray:[String] = []
-    var currentArray:[String] = []
+    
+    var movies: [NSDictionary]? = nil
+    var currentArray: [NSDictionary] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        addProduct(productCount: 25, product: "MacBook Pro 2015")
-        addProduct(productCount: 13, product: "MacBook Pro 2016")
-        addProduct(productCount: 10, product: "MacBook Pro 2017")
-        addProduct(productCount: 22, product: "MacBook Air 2018")
-        
-        currentArray = originalArray
         
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -38,6 +34,10 @@ class MainViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        //carga de peliculas y llamada a la API
+        loadMovies()
+       
     }
     
     @IBAction func cleanSearch(_ sender: Any) {
@@ -45,28 +45,47 @@ class MainViewController: UIViewController {
     }
     
     
-    func addProduct(productCount: Int, product: String) {
-        for index in 1...productCount{
-            originalArray.append("\(product)#\(index)")
-        }
-    }
-    
-    func filterData(searchItem: String){
+   /* func filterData(searchItem: String){
         if searchItem.count > 0 {
-            currentArray = originalArray
+            currentArray = movies!
             
             //remplazo los espacios vacios y lo convierto en minuscula
-            let filtrerResult = currentArray.filter {$0.replacingOccurrences(of: " ", with: "").lowercased().contains(searchItem.replacingOccurrences(of: " ", with: "").lowercased())
+            let filtrerResult = currentArray.filter {$.replacingOccurrences(of: " ", with: "").lowercased().contains(searchItem.replacingOccurrences(of: " ", with: "").lowercased())
             }
             
             currentArray = filtrerResult
             tableView.reloadData()
         }
     }
+    */
+    
     
     func restoreData(){
-        currentArray = originalArray
+        currentArray = movies!
         tableView.reloadData()
+    }
+ 
+    
+    //carga de peliculas y llamada a la API
+    func loadMovies(){
+      let apiKey = "d8ca9341ddf109600aafc5beb184e3d9"
+      let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
+      
+        let request = NSURLRequest(url: url! as URL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
+        
+        let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
+        
+        let task: URLSessionDataTask = session.dataTask(with: request as URLRequest, completionHandler: { (dataOrNil, response, error) in
+            if let data = dataOrNil{
+                if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary{
+                    self.movies = responseDictionary["results"] as? [NSDictionary]
+                    self.tableView.reloadData()
+                    
+                }
+            }
+        })
+        task.resume()
+        
     }
 
 }
@@ -74,7 +93,8 @@ class MainViewController: UIViewController {
 extension MainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if let searchText = searchController.searchBar.text {
-            filterData(searchItem: searchText)
+            //filterData
+            tableView.reloadData()
         }
     }
 }
@@ -86,7 +106,8 @@ extension MainViewController: UISearchBarDelegate {
         searchController.isActive = false
         
         if let searchText = searchBar.text {
-            filterData(searchItem: searchText)
+            //filterData
+           tableView.reloadData()
         }
     }
     
@@ -95,24 +116,36 @@ extension MainViewController: UISearchBarDelegate {
         
         //si tocamos el boton de cancelar por error
         if let searchText = searchBar.text, !searchText.isEmpty{
-            restoreData()
+           restoreData()
         }
     }
 }
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return currentArray.count
+        return movies?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = currentArray[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MoviesCell", for: indexPath) as! MoviesCell
+        let movie = movies![indexPath.row] 
+        let title = movie["title"] as! String
+        let overview = movie["overview"] as! String
+        let posterPath = movie["poster_path"] as! String
+        
+        cell.titleLabel.text = title
+        cell.overviewLabel.text = overview
+        
+        let baseUrl = "https://image.tmdb.org/t/p/w500"
+        let imageUrl = NSURL(string: baseUrl + posterPath)
+        
+        cell.imagePath.setImageWith(imageUrl! as URL)
+        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let alertController = UIAlertController(title: "Seleccionar", message: "Has seleccioando \(currentArray[indexPath.row])", preferredStyle: .alert)
+    /*func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let alertController = UIAlertController(title: "Selección", message: "Has seleccionado \(currentArray[indexPath.row])", preferredStyle: .alert)
         
         //quito el foco de la busqueda y me centro en el alert
         searchController.isActive =  false
@@ -123,6 +156,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         present(alertController, animated: true, completion: nil)
         
     }
-    
+    */
     
 }

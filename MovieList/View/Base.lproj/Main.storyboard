@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="MovieList" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SOH-ab-wrj">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="50"/>
                                 <color key="backgroundColor" red="0.21312771620000001" green="1" blue="0.76580457599999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Fe9-UH-z1S"/>
@@ -27,24 +27,57 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7zS-9k-MxU">
-                                <rect key="frame" x="0.0" y="102" width="414" height="700"/>
+                                <rect key="frame" x="0.0" y="78" width="375" height="529"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="y0z-Nl-hm0">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MoviesCell" rowHeight="235" id="y0z-Nl-hm0" customClass="MoviesCell" customModule="MovieList" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="235"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="y0z-Nl-hm0" id="9Ys-mH-QWM">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="234.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3R-vr-IyK">
+                                                    <rect key="frame" x="112" y="22" width="46" height="38.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sinopsis" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rLU-QK-izX">
+                                                    <rect key="frame" x="112" y="60" width="248" height="164"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="164" id="lUk-Dm-f7k"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="93G-Uy-jbl">
+                                                    <rect key="frame" x="14" y="34" width="90" height="120"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rLU-QK-izX" firstAttribute="top" secondItem="d3R-vr-IyK" secondAttribute="bottom" constant="-0.5" id="2f5-uz-fQQ"/>
+                                                <constraint firstItem="rLU-QK-izX" firstAttribute="leading" secondItem="d3R-vr-IyK" secondAttribute="leading" id="Boc-vl-Yfw"/>
+                                                <constraint firstItem="rLU-QK-izX" firstAttribute="top" secondItem="d3R-vr-IyK" secondAttribute="bottom" constant="-0.5" id="PPm-XQ-iBp"/>
+                                                <constraint firstItem="d3R-vr-IyK" firstAttribute="top" secondItem="9Ys-mH-QWM" secondAttribute="topMargin" constant="11" id="XDj-XA-cPl"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="d3R-vr-IyK" secondAttribute="trailing" constant="20" symbolic="YES" id="ZQG-ht-gZy"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="rLU-QK-izX" secondAttribute="trailing" id="ZaM-BQ-Odj"/>
+                                                <constraint firstAttribute="bottom" secondItem="rLU-QK-izX" secondAttribute="bottom" constant="10.5" id="fHk-Pa-FFM"/>
+                                                <constraint firstItem="rLU-QK-izX" firstAttribute="leading" secondItem="9Ys-mH-QWM" secondAttribute="leadingMargin" constant="97" id="hrx-Ma-NIG"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="imagePath" destination="93G-Uy-jbl" id="pBL-oj-Pa8"/>
+                                            <outlet property="overviewLabel" destination="rLU-QK-izX" id="QD2-at-pG9"/>
+                                            <outlet property="titleLabel" destination="d3R-vr-IyK" id="3ev-aV-ohn"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cq-aP-zI2">
-                                <rect key="frame" x="142" y="832" width="130" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="xbR-bg-qVZ"/>
-                                </constraints>
+                                <rect key="frame" x="130" y="637" width="115" height="30"/>
                                 <state key="normal" title="Borrar búsqueda"/>
                                 <connections>
                                     <action selector="cleanSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="04Y-CL-cJE"/>
@@ -74,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="47.826086956521742" y="20.758928571428569"/>
+            <point key="canvasLocation" x="47.200000000000003" y="20.239880059970016"/>
         </scene>
     </scenes>
 </document>
