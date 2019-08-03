@@ -14,6 +14,7 @@ class MoviesCell: UITableViewCell {
     @IBOutlet weak var imagePath: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var overviewLabel: UILabel!
+    @IBOutlet weak var voteAverage: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

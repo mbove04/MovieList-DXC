@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75143FFF22F42E7400457357 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75143FFE22F42E7400457357 /* MovieDetailViewController.swift */; };
 		75B478E222F368C600229D4D /* MoviesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B478E122F368C600229D4D /* MoviesCell.swift */; };
 		75EC511A22F2F303005C4B30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EC511922F2F303005C4B30 /* AppDelegate.swift */; };
 		75EC511F22F2F303005C4B30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75EC511D22F2F303005C4B30 /* Main.storyboard */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		02400A6B45587690C0BDD405 /* Pods-MovieList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieList.release.xcconfig"; path = "Target Support Files/Pods-MovieList/Pods-MovieList.release.xcconfig"; sourceTree = "<group>"; };
+		75143FFE22F42E7400457357 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		75B478E122F368C600229D4D /* MoviesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCell.swift; sourceTree = "<group>"; };
 		75EC511622F2F303005C4B30 /* MovieList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75EC511922F2F303005C4B30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +52,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		75143FFB22F429CC00457357 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				75EC512522F2F305005C4B30 /* Info.plist */,
+				75EC511922F2F303005C4B30 /* AppDelegate.swift */,
+				75EC512022F2F305005C4B30 /* Assets.xcassets */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		75EC510D22F2F303005C4B30 = {
 			isa = PBXGroup;
 			children = (
@@ -71,12 +83,9 @@
 		75EC511822F2F303005C4B30 /* MovieList */ = {
 			isa = PBXGroup;
 			children = (
+				75143FFB22F429CC00457357 /* Model */,
 				75EC512D22F30208005C4B30 /* View */,
 				75EC512C22F301FE005C4B30 /* Controller */,
-				75EC511922F2F303005C4B30 /* AppDelegate.swift */,
-				75EC512022F2F305005C4B30 /* Assets.xcassets */,
-				75EC512222F2F305005C4B30 /* LaunchScreen.storyboard */,
-				75EC512522F2F305005C4B30 /* Info.plist */,
 			);
 			path = MovieList;
 			sourceTree = "<group>";
@@ -86,6 +95,7 @@
 			children = (
 				75EC512E22F3022A005C4B30 /* MainViewController.swift */,
 				75B478E122F368C600229D4D /* MoviesCell.swift */,
+				75143FFE22F42E7400457357 /* MovieDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -94,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				75EC511D22F2F303005C4B30 /* Main.storyboard */,
+				75EC512222F2F305005C4B30 /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -104,7 +115,6 @@
 				CFD2F3793778010CF10790E7 /* Pods-MovieList.debug.xcconfig */,
 				02400A6B45587690C0BDD405 /* Pods-MovieList.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -223,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75143FFF22F42E7400457357 /* MovieDetailViewController.swift in Sources */,
 				75EC511A22F2F303005C4B30 /* AppDelegate.swift in Sources */,
 				75B478E222F368C600229D4D /* MoviesCell.swift in Sources */,
 				75EC512F22F3022A005C4B30 /* MainViewController.swift in Sources */,
@@ -374,7 +385,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z9Q9F989YB;
-				INFOPLIST_FILE = MovieList/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MovieList/Model/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -393,7 +404,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z9Q9F989YB;
-				INFOPLIST_FILE = MovieList/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/MovieList/Model/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
