@@ -40,8 +40,7 @@ class MainViewController: UIViewController {
         searchBar.resignFirstResponder()
     }
     
-    
-    //carga de peliculas y llamada a la API
+    //carga de peliculas y llamada a la API.
     func loadMovies(){
         let apiKey = "d8ca9341ddf109600aafc5beb184e3d9"
         let url = NSURL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)")
@@ -55,7 +54,6 @@ class MainViewController: UIViewController {
                 if let responseDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary{
                     self.movies = responseDictionary["results"] as? [NSDictionary]
                     self.tableView.reloadData()
-                    
                 }
             }
         })
@@ -86,9 +84,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return filtered
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return getMovies()?.count ?? 0
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MoviesCell", for: indexPath) as! MoviesCell
@@ -99,8 +99,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let posterPath = movie["poster_path"] as! String
         let voteAverage = movie["vote_average"] as! Double
         
-        var voteAverageString: String
-        voteAverageString = String(voteAverage)
+        var voteAverageString: String = "Media: "
+        voteAverageString = voteAverageString + String(voteAverage)
         
         cell.titleLabel.text = title
         cell.overviewLabel.text = overview
@@ -110,7 +110,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let imageUrl = NSURL(string: baseUrl + posterPath)
         
         cell.imagePath.setImageWith(imageUrl! as URL)
-        
+        cell.selectionStyle = .none
         return cell
     }
     

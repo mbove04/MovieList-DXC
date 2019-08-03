@@ -9,7 +9,6 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
-
     
     var delegate: MainViewController?
     
@@ -18,7 +17,6 @@ class MovieDetailViewController: UIViewController {
     var titleMovie = ""
     var overviewDetail = ""
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         movieTitleDetail.text = titleMovie
@@ -26,14 +24,10 @@ class MovieDetailViewController: UIViewController {
         imagePathDetail.image = image
         voteAverageDetail.text = vote
     }
-    
 
     @IBOutlet weak var voteAverageDetail: UILabel!
     @IBOutlet weak var imagePathDetail: UIImageView!
     @IBOutlet weak var movieTitleDetail: UILabel!
     @IBOutlet weak var overviewDetails: UILabel!
-    
-    
-    
     
 }
